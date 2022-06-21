@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
-
+import { LogoSvg } from './assets/Icons';
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <LogoSvg />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

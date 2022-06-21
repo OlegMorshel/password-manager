@@ -11,3 +11,4 @@ k8s/*
 package-lock.json
 package.json
 yarn.lock
+tsconfig.json 
