@@ -21,11 +21,15 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+}
+.icon {
+  animation: App-logo-spin infinite 20s linear;
+  width: 450px;
 }
 
 .App-link {
-  color: #61dafb;
+  color: $white;
+  font-size: 50px;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +39,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+.text {
+  font-size: 50px;
+  color: $gray100;
 }
