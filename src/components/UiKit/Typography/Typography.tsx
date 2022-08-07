@@ -7,6 +7,7 @@ import defaultS from './Default.module.scss'
 import largeS from './Large.module.scss'
 import mediumS from './Med.module.scss'
 import smallS from './Small.module.scss'
+import { ThemeStateType } from './typographyTypes'
 
 export enum TagType {
   h6 = 'h6',
@@ -42,31 +43,31 @@ const Typography = React.forwardRef<HTMLHeadingElement, TypographyProps>(
   ({ tag, variant = 'regular', children, className, customColorForTheme, ...props }, ref) => {
     const selectedTheme = useSelector((state: RootState) => state.theme)
 
-    // function selectClassGroup(theme: ThemeStateType) {
-    //   switch (theme?.fontSize) {
-    //     case 'small':
-    //       return smallS
-    //     case 'medium':
-    //       return mediumS
-    //     case 'large':
-    //       return largeS
-    //     default:
-    //       return defaultS
-    //   }
-    // }
+    function selectClassGroup(theme: ThemeStateType) {
+      switch (theme?.fontSize) {
+        case 'small':
+          return smallS
+        case 'medium':
+          return mediumS
+        case 'large':
+          return largeS
+        default:
+          return defaultS
+      }
+    }
 
-    // const selectedStyles = React.useMemo(() => selectClassGroup(selectedTheme), [selectedTheme])
-    // const classComputed = React.useMemo(
-    //   () => `${selectedStyles[tag]} ${selectedStyles[variant]} ${className}`,
-    //   [className, selectedStyles, tag, variant]
-    // )
+    const selectedStyles = React.useMemo(() => selectClassGroup(selectedTheme), [selectedTheme])
+    const classComputed = React.useMemo(
+      () => `${selectedStyles[tag]} ${selectedStyles[variant]} ${className}`,
+      [className, selectedStyles, tag, variant]
+    )
     const Component = TagType[tag]
 
     // FIXME: Bad solution but should work right now
 
     return (
-      // <Component ref={ref} className={classComputed} {...props}>
-      <Component ref={ref} {...props}>
+      <Component ref={ref} className={classComputed} {...props}>
+        {/* <Component ref={ref} {...props} className={className}> */}
         {children}
       </Component>
     )

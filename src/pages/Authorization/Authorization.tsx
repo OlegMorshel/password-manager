@@ -1,15 +1,59 @@
-import Dropdown from '@src/components/UiKit/Dropdown/Dropdown'
+import Button, { ButtonSize } from '@src/components/UiKit/Button/Button'
+import Checkbox from '@src/components/UiKit/Checkbox/Checkbox'
 import Input from '@src/components/UiKit/Input/Input'
-import RangeComponent from '@src/components/UiKit/RangeComponent/RangeComponent'
-import Switch from '@src/components/UiKit/Switch/Switch'
-import React, { useState } from 'react'
-import Checkbox from '../../components/UiKit/Checkbox/Checkbox'
-import Loader from '../../components/UiKit/Loader/Loader'
-import Typography from '../../components/UiKit/Typography/Typography'
+import Typography from '@src/components/UiKit/Typography/Typography'
+import classNames from 'classnames/bind'
+import { useFormik } from 'formik'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styles from './Authorization.module.scss'
+const cnb = classNames.bind(styles)
 
-const Authorization = () => {
-  const [selected, setSelected] = useState(false)
-  return <div></div>
+const Authorization: React.FC = () => {
+  const loginForm = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    onSubmit: values => console.log('values ', values),
+  })
+
+  const { errors, touched, values, handleChange, handleBlur } = loginForm
+
+  return (
+    <div className={cnb('authWrapper')}>
+      <Typography tag="h2" className={cnb('loginTitle')}>
+        Sign in
+      </Typography>
+      <form onSubmit={e => e.preventDefault()} className={cnb('authForm')}>
+        <Input
+          title="Email"
+          id="email"
+          name="email"
+          value={values.email}
+          setValue={handleChange}
+          handleBlur={handleBlur}
+          error={errors.email}
+        />
+        <Input
+          title="Password"
+          id="password"
+          name="password"
+          value={values.password}
+          setValue={handleChange}
+          handleBlur={handleBlur}
+          error={errors.password}
+          isPassword
+        />
+        <Checkbox label="Remember me" classNameForWrapper={cnb('authCheckbox')} />
+        <Button title="Login" size={ButtonSize.LARGE} loading={false} />
+      </form>
+
+      <Link to={'/registration'} className={cnb('registrationTitle')}>
+        Registration
+      </Link>
+    </div>
+  )
 }
 
 export default Authorization

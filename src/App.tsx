@@ -5,8 +5,8 @@ import styles from './App.module.scss'
 import Loader from './components/UiKit/Loader/Loader'
 const cnb = classNames.bind(styles)
 
-const Authorization = React.lazy(
-  () => import(/* webpackChunkName: "Main", webpackPrefetch: true */ '../src/pages/Authorization/Authorization')
+const AuthorizationWrapper = React.lazy(
+  () => import(/* webpackChunkName: "Main", webpackPrefetch: true */ './pages/Authorization/AuthorizationWrapper')
 )
 const App = () => {
   return (
@@ -18,7 +18,7 @@ const App = () => {
       }
     >
       <Routes>
-        <Route path="/auth" element={<Authorization />} />
+        <Route path="/auth" element={<AuthorizationWrapper />} />
       </Routes>
     </Suspense>
   )

@@ -1,0 +1,19 @@
+.menuItemWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+
+  .mark {
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background: transparent;
+
+    &.activeMark {
+      background: white;
+    }
+  }
+}

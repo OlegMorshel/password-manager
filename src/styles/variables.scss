@@ -6,6 +6,8 @@ $red: #ef4747;
 $error: #6d0202;
 $gray: #c5c1c1;
 
+$menuHeight: 58px;
+
 @mixin strongHeight($size) {
   height: $size;
   min-height: $size;
