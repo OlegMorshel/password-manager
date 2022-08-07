@@ -25,6 +25,11 @@
     "build": "webpack",
     "build:prod": "webpack --config webpack.config.prod.js"
   },
+	  "author": "Addamant",
+  "license": "ISC",
+  "files": [
+    "src/image"
+  ], 
   "eslintConfig": {
     "extends": [
       "react-app",
