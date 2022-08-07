@@ -7,9 +7,7 @@
         "code": 140
       }
     ],
-    "prettier/prettier": "error",
-    "semi": ["error", "always"],
-    "quotes": ["error", "single"]
+    "prettier/prettier": "error"
   },
   "parserOptions": {
     "ecmaVersion": 2020

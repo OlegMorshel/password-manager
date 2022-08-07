@@ -1,16 +1,16 @@
-const webpack = require('webpack');
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const dotenv = require('dotenv');
-const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack')
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const dotenv = require('dotenv')
+const Dotenv = require('dotenv-webpack')
 // enable this for analyze
 // const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
-const isDev = process.env.NODE_ENV !== 'production';
-const envConfig = dotenv.config().parsed;
+const isDev = process.env.NODE_ENV !== 'production'
+const envConfig = dotenv.config().parsed
 module.exports = {
   mode: 'development',
   entry: './index.tsx',
@@ -18,6 +18,15 @@ module.exports = {
   target: 'web',
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
+    alias: {
+      '@src': path.resolve(__dirname, 'src/'),
+      '@public': path.resolve(__dirname, 'public/'),
+      '@api': path.resolve(__dirname, 'src/api'),
+      '@components': path.resolve(__dirname, 'src/components/'),
+      '@store': path.resolve(__dirname, 'src/store/'),
+      '@scene': path.resolve(__dirname, 'src/scene/'),
+      '@image': path.resolve(__dirname, 'src/image/'),
+    },
   },
   module: {
     rules: [
@@ -149,4 +158,4 @@ module.exports = {
     // enable this for analyze
     // new BundleAnalyzerPlugin(),
   ].filter(Boolean),
-};
+}
