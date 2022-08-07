@@ -1,1 +1,18 @@
-$gray100: #0e0e12;
+$green: #2f8883;
+$green40: #95b0af;
+$textColor: #000000;
+$textColor25: rgba(0, 0, 0, 0.25);
+$red: #ef4747;
+$error: #6d0202;
+$gray: #c5c1c1;
+
+@mixin strongHeight($size) {
+  height: $size;
+  min-height: $size;
+  max-height: $size;
+}
+@mixin strongWidth($size) {
+  width: $size;
+  min-width: $size;
+  max-width: $size;
+}

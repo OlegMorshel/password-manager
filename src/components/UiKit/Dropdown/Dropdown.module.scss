@@ -1,0 +1,329 @@
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 56px;
+
+  &.disabled {
+    cursor: no-drop;
+  }
+  &.hideValueField {
+    display: flex;
+
+    @include strongHeight(0);
+    @include strongWidth(max-content);
+
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+    .wrapper {
+      @include strongHeight(0);
+      @include strongWidth(max-content);
+
+      border: 0;
+      margin: 0;
+      padding: 0;
+
+      display: flex;
+      flex-direction: column;
+    }
+    .listWrapper {
+      top: 0;
+      min-width: max-content;
+      &.open {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.wrapper {
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  outline: none;
+  font-family: Poppins, sans-serif;
+  font-size: 16px;
+  line-height: 150%;
+  color: #1e1c24;
+  border: 1px solid $green;
+  border-radius: 10px;
+  height: 56px;
+  min-width: 100px;
+  background-color: white;
+
+  &.open {
+    height: auto;
+    min-height: 56px;
+    z-index: 2;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 32px $green;
+  }
+
+  &.error {
+    border: 1px solid $error;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    background: $green;
+  }
+}
+
+.listWrapper {
+  top: 65px;
+  width: calc(100% - 7px);
+  border: 1px solid transparent;
+  padding: (8px - 1px) 0;
+  padding-right: 8px - 1px;
+  position: absolute;
+  box-shadow: 0 4px 32px $green;
+  display: none;
+  height: auto;
+  border-radius: 12px;
+  background-color: white;
+
+  &.toTop {
+    &.max {
+      top: -325px;
+    }
+    &.six {
+      top: -280px;
+    }
+    &.five {
+      top: -240px;
+    }
+    &.four {
+      top: -200px;
+    }
+    &.three {
+      top: -160px;
+    }
+    &.two {
+      top: -120px;
+    }
+    &.one {
+      top: -80px;
+    }
+  }
+
+  &.open {
+    display: block;
+  }
+
+  &.noScroll {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+
+.list {
+  top: 65px;
+  font-family: Poppins, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  overflow: auto;
+  max-height: 300px;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: $green $green40;
+}
+
+.item {
+  $checkIconSize: 24px;
+  $verPadding: 9px;
+  $horPadding: 16px - 1px;
+
+  min-height: $checkIconSize + $verPadding * 2;
+
+  position: relative;
+  width: calc(100% - 8px);
+  padding: $verPadding $horPadding;
+  padding-right: $horPadding + $checkIconSize;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: $gray;
+  background-color: white;
+  font-style: normal;
+  font-family: Poppins, sans-serif;
+  &.item:first-child {
+    margin-top: 8px;
+  }
+
+  &.item:last-child {
+    margin-bottom: 8px;
+  }
+
+  &.item:hover {
+    color: $green;
+  }
+
+  &.selected {
+    color: $green;
+    background: $green40;
+    width: calc(100% - 8px);
+
+    padding-right: $horPadding;
+
+    &.noScroll {
+      width: 100%;
+    }
+  }
+
+  &.noScroll {
+    width: 100%;
+  }
+
+  .companyAddress {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: $gray;
+  }
+
+  .check {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.disabled {
+  .title {
+    cursor: not-allowed;
+  }
+}
+
+.title {
+  cursor: pointer;
+
+  padding: 19px 60px 0 20px;
+  font-size: 16px;
+  font-family: Poppins, sans-serif;
+
+  line-height: 16px;
+  user-select: none;
+  color: $gray;
+
+  &.open {
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    padding-bottom: 16px;
+  }
+
+  &.hasSelected {
+    font-family: Poppins, sans-serif;
+    font-size: 12px;
+    line-height: 150%;
+    padding: 6px 90px 0 16px;
+  }
+}
+
+.selected {
+  font-family: Poppins, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: $green;
+  font-size: 16px;
+  line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+}
+
+.icon {
+  position: absolute;
+  top: 14px;
+  right: 25px;
+  cursor: pointer;
+
+  &.clear {
+    right: 57px;
+  }
+
+  svg {
+    transition: all 0.1s linear;
+    transform: rotate(0);
+  }
+
+  &.hasSelected {
+    top: 14px;
+  }
+
+  &.open {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+}
+
+.errorText {
+  font-family: Poppins, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  color: $error;
+}
+
+.bagesWrapper {
+  margin-top: 2px;
+  max-width: 100%;
+  overflow-x: auto;
+  display: flex;
+  scrollbar-width: thin;
+  scrollbar-color: $green $green40;
+  transition: all 0.2s linear;
+  gap: 8px;
+
+  span {
+    white-space: nowrap;
+  }
+
+  &.shift {
+    transform: translateY(-4px);
+  }
+
+  .badge {
+    margin-bottom: 4px;
+  }
+}
+
+.bagesWrapper::-webkit-scrollbar-track-piece,
+.list::-webkit-scrollbar-track-piece {
+  border-radius: 4px;
+  background: $green;
+}
+.bagesWrapper::-webkit-scrollbar-thumb,
+.list::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: $green;
+}
+
+.bagesWrapper::-webkit-scrollbar,
+.list::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.isLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

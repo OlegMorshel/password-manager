@@ -1,0 +1,69 @@
+@import '@src/styles/variables';
+.switchWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0 12px;
+  &.switchWithoutLabel {
+    gap: 0;
+  }
+  .switch {
+    position: relative;
+    width: 48px;
+    height: 22px;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    border: 1px solid $green;
+    transition: 0.4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: ' ';
+    height: 16px;
+    width: 16px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: 2px;
+    background-color: $green;
+    transition: 0.4s;
+  }
+
+  input:checked + .slider {
+    background-color: $green40;
+  }
+  input:checked + .slider:before {
+    background-color: $green;
+    box-shadow: inset 0px 3px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px $green40;
+  }
+  input:checked + .slider:before {
+    transform: translateX(calc(27px));
+  }
+  .slider.round {
+    border-radius: 14px;
+  }
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .desc {
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: $green;
+  }
+}

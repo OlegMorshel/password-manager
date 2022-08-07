@@ -1,0 +1,77 @@
+@mixin commonStyles {
+  color: black;
+  font-family: Arial, sans-serif;
+  font-style: normal;
+  &:empty {
+    display: none;
+  }
+}
+
+.h1 {
+  font-weight: 900;
+  font-size: 64px;
+  line-height: 64px;
+  @include commonStyles;
+}
+.h2 {
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 56px;
+  @include commonStyles;
+}
+.h3 {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 48px;
+  @include commonStyles;
+}
+.h4 {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 32px;
+  @include commonStyles;
+}
+.h5 {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 28px;
+  @include commonStyles;
+}
+.h6 {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 28px;
+  @include commonStyles;
+}
+
+.p1 {
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 28px;
+  @include commonStyles;
+}
+.p2 {
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 28px;
+  @include commonStyles;
+}
+.p3 {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+  @include commonStyles;
+}
+.p4 {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  @include commonStyles;
+}
+
+.medium {
+  font-weight: 700;
+}
+.bold {
+  font-weight: 900;
+}

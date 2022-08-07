@@ -6,6 +6,6 @@ export type AppDispatch = typeof store.dispatch
 
 export const store = configureStore({
   reducer: {
-    init: initSlice,
+    // init: initSlice.arguments,
   },
 })

@@ -5,14 +5,17 @@ import { StrictMode } from 'react'
 import './src/styles/styles.scss'
 import { Provider } from 'react-redux'
 import { store } from './src/store/store'
+import { BrowserRouter } from 'react-router-dom'
 
 const rootElement = document.getElementById('root')
 const root = createRoot(rootElement as Element)
 
 root.render(
   <Provider store={store}>
-    <StrictMode>
-      <App />
-    </StrictMode>
+    <BrowserRouter>
+      <StrictMode>
+        <App />
+      </StrictMode>
+    </BrowserRouter>
   </Provider>
 )

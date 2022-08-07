@@ -6,7 +6,7 @@ interface GenericState<T> {
 }
 
 export const initSlice = <T, Reducers extends SliceCaseReducers<GenericState<T>>>({
-  name = '',
+  name = 'init',
   initialState,
   reducers,
 }: {
@@ -37,8 +37,8 @@ export const initSlice = <T, Reducers extends SliceCaseReducers<GenericState<T>>
   })
 }
 
-const wrappedSlice = initSlice({
-  name: 'test',
+export const wrappedSlice = initSlice({
+  name: 'init',
   initialState: { status: 'loading' } as GenericState<string>,
   reducers: {
     magic(state) {

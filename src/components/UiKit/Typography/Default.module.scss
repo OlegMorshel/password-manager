@@ -1,0 +1,95 @@
+@mixin textColor {
+  color: $darkBlue;
+  font-style: normal;
+  &:empty {
+    display: none;
+  }
+}
+
+.h1 {
+  font-family: Roboto, sans-serif;
+  font-weight: 900;
+  font-size: 48px;
+  line-height: 56px;
+  @include textColor;
+}
+
+.h2 {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+  @include textColor;
+}
+
+.h3 {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  @include textColor;
+}
+
+.h4 {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  @include textColor;
+}
+
+.h5 {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  @include textColor;
+}
+
+.h6 {
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  @include textColor;
+}
+
+.p1 {
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  @include textColor;
+}
+
+.p2 {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  @include textColor;
+}
+
+.p3 {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  @include textColor;
+}
+
+.p4 {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  @include textColor;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 700;
+}

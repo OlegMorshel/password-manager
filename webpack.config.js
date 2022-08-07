@@ -11,21 +11,21 @@ const Dotenv = require('dotenv-webpack')
 
 const isDev = process.env.NODE_ENV !== 'production'
 const envConfig = dotenv.config().parsed
+
+const resolvePath = p => path.resolve(__dirname, p)
+
 module.exports = {
   mode: 'development',
   entry: './index.tsx',
   devtool: 'source-map',
   target: 'web',
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.tsx', '.js', '.scss'],
     alias: {
-      '@src': path.resolve(__dirname, 'src/'),
-      '@public': path.resolve(__dirname, 'public/'),
-      '@api': path.resolve(__dirname, 'src/api'),
-      '@components': path.resolve(__dirname, 'src/components/'),
-      '@store': path.resolve(__dirname, 'src/store/'),
-      '@scene': path.resolve(__dirname, 'src/scene/'),
-      '@image': path.resolve(__dirname, 'src/image/'),
+      '@src': resolvePath('./src'),
+      '@public': resolvePath('./public'),
+      '@hooks': resolvePath('./src/hooks'),
+      '@styles': resolvePath('./src/styles'),
     },
   },
   module: {
@@ -83,7 +83,7 @@ module.exports = {
             options: {
               sourceMap: true,
               implementation: require('sass'),
-              additionalData: `@import "src/styles/variables.scss";`,
+              additionalData: `@import "@src/styles/variables.scss";`,
             },
           },
         ],
