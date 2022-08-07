@@ -1,5 +1,6 @@
 import Dropdown from '@src/components/UiKit/Dropdown/Dropdown'
 import Input from '@src/components/UiKit/Input/Input'
+import RangeComponent from '@src/components/UiKit/RangeComponent/RangeComponent'
 import Switch from '@src/components/UiKit/Switch/Switch'
 import React, { useState } from 'react'
 import Checkbox from '../../components/UiKit/Checkbox/Checkbox'
