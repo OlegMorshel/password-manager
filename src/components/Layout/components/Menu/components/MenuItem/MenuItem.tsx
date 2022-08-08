@@ -6,15 +6,16 @@ export interface IMenuItem {
   id: string
   icon: JSX.Element
   isActive: boolean
+  query: string
 }
 
 interface IMenuItemProps extends IMenuItem {
   onSelectedItemChange: (item: IMenuItem) => void
 }
 
-const MenuItem: React.FC<IMenuItemProps> = ({ icon, isActive, id, onSelectedItemChange }) => {
+const MenuItem: React.FC<IMenuItemProps> = ({ icon, isActive, id, query, onSelectedItemChange }) => {
   return (
-    <div className={cnb('menuItemWrapper')} onClick={() => onSelectedItemChange({ icon, id, isActive })}>
+    <div className={cnb('menuItemWrapper')} onClick={() => onSelectedItemChange({ icon, id, query, isActive })}>
       {icon}
       <div className={cnb('mark', { activeMark: isActive })} />
     </div>

@@ -5,7 +5,7 @@ import Typography from '@src/components/UiKit/Typography/Typography'
 import classNames from 'classnames/bind'
 import { useFormik } from 'formik'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './Authorization.module.scss'
 const cnb = classNames.bind(styles)
 
@@ -19,6 +19,11 @@ const Authorization: React.FC = () => {
   })
 
   const { errors, touched, values, handleChange, handleBlur } = loginForm
+  const navigate = useNavigate()
+
+  const handleLogin = () => {
+    navigate({ pathname: '/', search: 'passwordCollections' }, { replace: true })
+  }
 
   return (
     <div className={cnb('authWrapper')}>
@@ -46,7 +51,7 @@ const Authorization: React.FC = () => {
           isPassword
         />
         <Checkbox label="Remember me" classNameForWrapper={cnb('authCheckbox')} />
-        <Button title="Login" size={ButtonSize.LARGE} loading={false} />
+        <Button title="Login" size={ButtonSize.LARGE} loading={false} onClick={handleLogin} />
       </form>
 
       <Link to={'/registration'} className={cnb('registrationTitle')}>

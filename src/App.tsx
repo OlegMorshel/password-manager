@@ -8,6 +8,10 @@ const cnb = classNames.bind(styles)
 const AuthorizationWrapper = React.lazy(
   () => import(/* webpackChunkName: "Main", webpackPrefetch: true */ './pages/Authorization/AuthorizationWrapper')
 )
+const MainPageWrapper = React.lazy(
+  () => import(/* webpackChunkName: "Main", webpackPrefetch: true */ './pages/MainPageWrapper/MainPageWrapper')
+)
+
 const App = () => {
   return (
     <Suspense
@@ -19,6 +23,7 @@ const App = () => {
     >
       <Routes>
         <Route path="/auth" element={<AuthorizationWrapper />} />
+        <Route path="/" element={<MainPageWrapper />} />
       </Routes>
     </Suspense>
   )
