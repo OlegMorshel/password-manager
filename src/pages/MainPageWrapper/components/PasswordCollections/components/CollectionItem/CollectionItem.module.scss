@@ -1,0 +1,41 @@
+.collectionWrapper {
+  max-width: 345px;
+  display: grid;
+  grid-template-columns: 4.5fr 2.5fr 2fr;
+  align-items: center;
+
+  .image {
+    height: 100%;
+    max-width: 100%;
+    width: auto;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: red;
+  }
+  .infoWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 5px;
+    .collectionTitle {
+    }
+    .collectionCount {
+      color: $green;
+      font-size: 37px;
+      line-height: 1.8;
+    }
+  }
+  .viewAllText {
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    align-items: flex-end;
+    height: 100%;
+  }
+}

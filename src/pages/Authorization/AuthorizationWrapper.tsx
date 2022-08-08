@@ -12,7 +12,7 @@ import Authorization from './Authorization'
 const AuthorizationWrapper = () => {
   const [selected, setSelected] = useState(false)
   return (
-    <Layout withOutMenu>
+    <Layout withoutHeader withOutMenu>
       <Authorization />
     </Layout>
   )
