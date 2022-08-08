@@ -1,0 +1,25 @@
+.headerWrapper {
+  margin-top: 20px;
+
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid $green;
+
+  .headerTitle {
+    color: $green;
+  }
+  .profileWrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid $green;
+
+    object-fit: cover;
+    object-position: center;
+  }
+}
