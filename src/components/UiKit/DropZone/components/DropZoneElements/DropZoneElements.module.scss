@@ -1,0 +1,39 @@
+.filledBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inputWrapper {
+  width: 100%;
+}
+
+.imagePreview {
+  margin-left: 16px;
+  padding-bottom: 18px;
+  position: relative;
+  cursor: pointer;
+
+  svg {
+    transition: all 0.1s linear;
+    position: absolute;
+    opacity: 0;
+    top: 16px;
+    left: 16px;
+    path {
+      fill: white;
+    }
+  }
+
+  &.imagePreview:hover {
+    svg {
+      opacity: 1;
+    }
+  }
+}
+
+.image {
+  border-radius: 8px;
+  object-fit: cover;
+  width: 56px;
+  height: 56px;
+}
