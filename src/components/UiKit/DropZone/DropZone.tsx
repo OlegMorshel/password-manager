@@ -2,7 +2,7 @@ import classNames from 'classnames/bind'
 import React, { memo, useCallback, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 // import useUploadFile from "src/hooks/mutation/useUploadFile";
-import { ClipSvg } from 'src/icons/Icons'
+import { ClipSvg } from '@src/icons/Icons'
 // import { createNotification } from "src/providers/NotificationProvider";
 import Loader from '../Loader/Loader'
 import Typography from '../Typography/Typography'
@@ -48,14 +48,14 @@ const DropZone: React.FC<Props> = memo(
     innerClassName,
     files,
     setFiles,
-    maxFiles = 1,
+    maxFiles = 3,
     multiple = false,
     title = '',
     subtitle = 'Перетащите файл сюда или выберите на компьютере',
     isVisibleSize = false,
     minPics,
     maxPics,
-    noPreview,
+    noPreview = false,
   }) => {
     // const { mutate, isLoading, isError } = useUploadFile()
     // useEffect(() => {
@@ -63,59 +63,46 @@ const DropZone: React.FC<Props> = memo(
     //   if (isError) console.log('error', isError)
     // }, [isError])
 
-    // const onDrop = useCallback(
-    //   acceptedFiles => {
-    //     const arr = [...files, ...acceptedFiles]
-    //     // mutate({ file: acceptedFiles[0] }, { onSuccess: data => setFiles([data.data.data]) })
+    const onDrop = useCallback(
+      //@ts-ignore-this-line
+      acceptedFiles => {
+        console.log('acceptedFiles ', files)
+        const arr = [...files, ...acceptedFiles]
+        // mutate({ file: acceptedFiles[0] }, { onSuccess: data => setFiles([data.data.data]) })
 
-    //     if (arr.length > maxFiles) return setFiles(acceptedFiles)
-    //     // return setFiles(arr);
-    //   },
-    //   [files, maxFiles, setFiles]
-    // )
-    const onDrop = useCallback(acceptedFiles => {
-      acceptedFiles.forEach(file => {
-        const reader = new FileReader()
-
-        reader.onabort = () => console.log('file reading was aborted')
-        reader.onerror = () => console.log('file reading has failed')
-        reader.onload = () => {
-          // Do whatever you want with the file contents
-          const binaryStr = reader.result
-          console.log(binaryStr)
-        }
-        reader.readAsArrayBuffer(file)
-      })
-    }, [])
+        if (arr.length > maxFiles) return setFiles(acceptedFiles)
+        return setFiles(arr)
+      },
+      [files, maxFiles, setFiles]
+    )
     const { getRootProps, getInputProps } = useDropzone({
       onDrop,
-      accept: 'image/jpeg, image/png',
+      accept: 'image/*',
       multiple: multiple,
       maxFiles: maxFiles - files?.length,
     })
-
     return (
       <>
         {files.length < maxFiles ? (
           <>
-            {true ? (
+            {/* {true ? (
               <div className={cnb('wrapper')}>
                 <Loader small className={cnb('loader')} />
-              </div>
-            ) : (
-              <div {...getRootProps()} className={cnb('wrapper', wrapperClassName)}>
-                <input {...getInputProps()} className={innerClassName} />
-                <Typography tag="p4" className={cnb('text')}>
-                  {subtitle}
+              </div> */}
+
+            <div {...getRootProps()} className={cnb('wrapper', wrapperClassName)}>
+              <input {...getInputProps()} className={innerClassName} />
+              <Typography tag="p4" className={cnb('text')}>
+                {subtitle}
+              </Typography>
+              <div className={cnb('lowerText')}>
+                <ClipSvg />
+                <Typography tag="p3" className={cnb('titleText')}>
+                  {title}
                 </Typography>
-                <div className={cnb('lowerText')}>
-                  <ClipSvg />
-                  <Typography tag="p3" className={cnb('titleText')}>
-                    {title}
-                  </Typography>
-                </div>
               </div>
-            )}
+            </div>
+
             {isVisibleSize && (
               <div className={cnb('mainImageSizeText')}>
                 <Typography tag="p4">{`Минимальный размер — ${maxPics} x ${minPics} пикс.`}</Typography>

@@ -11,6 +11,7 @@ interface IMainPageContent {
 const MainPageContent: React.FC<IMainPageContent> = ({ query }) => {
   switch (query) {
     case UrlQueryParamToPages.PASSWORD_MANAGER:
+    case '':
       return <PasswordSection />
     case UrlQueryParamToPages.ADD_GROUP:
       return <AddNewGroup />

@@ -1,10 +1,13 @@
+import Button, { ButtonSize } from '@src/components/UiKit/Button/Button'
+import DropZone, { ApiFileType } from '@src/components/UiKit/DropZone/DropZone'
 import Input from '@src/components/UiKit/Input/Input'
 import classNames from 'classnames/bind'
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './AddNewGroup.module.scss'
 const cnb = classNames.bind(styles)
 const AddNewGroup: React.FC = () => {
+  const [file, setFile] = useState<ApiFileType[]>([])
   const newGroupForm = useFormik({
     initialValues: {
       title: '',
@@ -14,7 +17,7 @@ const AddNewGroup: React.FC = () => {
   })
   const { errors, touched, values, handleBlur, handleChange } = newGroupForm
   return (
-    <div>
+    <div className={cnb('addNesGroupWrapper')}>
       <Input
         id="title"
         name="title"
@@ -25,6 +28,8 @@ const AddNewGroup: React.FC = () => {
         handleBlur={handleBlur}
         value={values.title}
       />
+      <DropZone files={file} setFiles={setFile} />
+      <Button size={ButtonSize.LARGE} title="Create" />
     </div>
   )
 }

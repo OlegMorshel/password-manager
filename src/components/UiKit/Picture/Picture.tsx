@@ -18,7 +18,6 @@ const Picture: React.FC<Props> = memo(({ alt, src, className, height, width }) =
     image.src = srcImage
     return image.complete
   }
-
   return (
     <LazyLoadImage
       effect={checkIsImageCached(src) ? undefined : 'blur'}

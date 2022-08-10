@@ -2,7 +2,7 @@ import Picture from '@src/components/UiKit/Picture/Picture'
 import classNames from 'classnames/bind'
 import React from 'react'
 import { DropzoneInputProps, DropzoneRootProps } from 'react-dropzone'
-import { TrashSVG } from 'src/icons/Icons'
+import { TrashSVG } from '@src/icons/Icons'
 import Input from '../../../Input/Input'
 import { ApiFileType } from '../../DropZone'
 import styles from './DropZoneElements.module.scss'
@@ -19,6 +19,7 @@ interface Props {
 }
 
 const DropZoneElements: React.FC<Props> = ({ files, getRootProps, getInputProps, title, setFiles, noPreview }): JSX.Element => {
+  console.log('item', files)
   return (
     <>
       {files?.map((item, index) => (
@@ -29,11 +30,11 @@ const DropZoneElements: React.FC<Props> = ({ files, getRootProps, getInputProps,
           </div>
           <div className={cnb('imagePreview')} onClick={() => setFiles(files.filter((el, i) => i !== index))}>
             <TrashSVG />
-            {noPreview ? (
+            {/* {noPreview ? (
               <Picture src={'https://via.placeholder.com/56x56'} alt="Фото" className={cnb('image')} />
-            ) : (
-              <Picture src={item.absolute_path} alt="Фото" className={cnb('image')} />
-            )}
+            ) : ( */}
+            <Picture src={item.absolute_path} alt="Фото" className={cnb('image')} />
+            {/* )} */}
           </div>
         </div>
       ))}

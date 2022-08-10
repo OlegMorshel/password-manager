@@ -1,0 +1,26 @@
+.counterChanger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid $green;
+
+  .countText {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    .action {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .title {
+    color: $textColor;
+  }
+
+  .count {
+    color: $green;
+  }
+}
