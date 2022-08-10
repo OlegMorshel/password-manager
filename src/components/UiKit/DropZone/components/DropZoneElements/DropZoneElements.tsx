@@ -19,7 +19,6 @@ interface Props {
 }
 
 const DropZoneElements: React.FC<Props> = ({ files, getRootProps, getInputProps, title, setFiles, noPreview }): JSX.Element => {
-  console.log('item', files)
   return (
     <>
       {files?.map((item, index) => (

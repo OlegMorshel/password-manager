@@ -10,7 +10,6 @@ const cnb = classNames.bind(styles)
 const Menu = () => {
   const [menuIconsState, setMenuIconsState] = useState<IMenuItem[]>(MenuItems)
   const navigate = useNavigate()
-  console.log('menuIconsState ', menuIconsState)
   const onSelectedItemChange = (item: IMenuItem) => {
     setMenuIconsState(
       menuIconsState.map(el => {

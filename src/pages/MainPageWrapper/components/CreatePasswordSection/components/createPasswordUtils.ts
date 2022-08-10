@@ -7,6 +7,21 @@ interface IPasswordSettings {
   minimumNumber: number
   minimumSpecialSymbol: number
 }
+const mixPassword = (password: string): string => {
+  let temp = password
+  let result = ''
+  const mixValue = (str: string, init: string): string => {
+    if (!!str.length) {
+      const tempValue = str[Math.floor(Math.random() * str.length)]
+      init += tempValue
+      temp = temp.replace(tempValue, '')
+      return mixValue(temp, init)
+    } else {
+      return init
+    }
+  }
+  return mixValue(password, result)
+}
 
 export const createPassword = ({
   length,
@@ -67,6 +82,6 @@ export const createPassword = ({
     }
     return init
   }
-  const resultPassword = configurePassword(minimumNumber, minimumSpecialSymbol, length, tempPull)
-  return resultPassword
+  const password = configurePassword(minimumNumber, minimumSpecialSymbol, length, tempPull)
+  return password
 }
