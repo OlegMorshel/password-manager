@@ -6,6 +6,7 @@ import classNames from 'classnames/bind'
 import { useFormik } from 'formik'
 import React, { useState } from 'react'
 import CounterChanger from './components/CounterChanger/CounterChanger'
+import { createPassword } from './components/createPasswordUtils'
 import ResultPassword from './components/ResultPassword/ResultPassword'
 import UsualFilter from './components/UsualFilter/UsualFilter'
 import styles from './CreatePasswordSection.module.scss'
@@ -23,6 +24,29 @@ const CreatePasswordSection: React.FC = () => {
   const onChangeValue = (value: RangeValue) => {
     return setValue({ values: value })
   }
+
+  // const generatePassword = (passwordProps, pwdLength) => {
+  //   const { uppercase, lowercase, symbols, numbers } = passwordProps
+  //   setPasswordLength(pwdLength)
+  //   setUpperCase(uppercase)
+  //   setLowerCase(lowercase)
+  //   setSymbols(symbols)
+  //   setNumber(numbers)
+  //   const password = passwordCharacters()
+  //   return password
+  // }
+  console.log(
+    'createPassword',
+    createPassword({
+      length: 20,
+      minimumNumber: 4,
+      minimumSpecialSymbol: 5,
+      withLowerCase: true,
+      withNumbers: true,
+      withSpecialSymbols: true,
+      withUpperCase: true,
+    })
+  )
   return (
     <div className={cnb('generatorWrapper')}>
       <ResultPassword value="" />
