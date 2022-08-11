@@ -7,8 +7,12 @@ interface IResultPassword {
   value: string
   isError?: boolean
   error?: string
+  setGeneratedPassword: React.Dispatch<React.SetStateAction<string>>
 }
-const ResultPassword: React.FC<IResultPassword> = ({ value, error, isError }) => {
+const ResultPassword: React.FC<IResultPassword> = ({ value, error, isError, setGeneratedPassword }) => {
+  if (isError) {
+    setGeneratedPassword('')
+  }
   return (
     <div className={cnb('passwordWrapper')}>
       <div className={cnb('passwordInfo')}>

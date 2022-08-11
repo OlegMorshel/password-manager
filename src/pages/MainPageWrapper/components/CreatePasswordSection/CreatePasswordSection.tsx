@@ -48,6 +48,7 @@ const CreatePasswordSection: React.FC = () => {
           validateFunction(value.values[0], withUpperCase, withLowerCase, withNumbers, withSpecialSymbols, minimumNumbers, minimumSymbols)
             .errorMessage
         }
+        setGeneratedPassword={setGeneratedPassword}
       />
       <div className={cnb('buttonsWrapper')}>
         <Button size={ButtonSize.LARGE} title={'Copy'} />
