@@ -8,19 +8,71 @@ interface IPasswordSettings {
   minimumSpecialSymbol: number
 }
 const mixPassword = (password: string): string => {
-  let temp = password
-  let result = ''
-  const mixValue = (str: string, init: string): string => {
-    if (!!str.length) {
-      const tempValue = str[Math.floor(Math.random() * str.length)]
-      init += tempValue
-      temp = temp.replace(tempValue, '')
-      return mixValue(temp, init)
+  let initialPassword = password
+  let configuredResult = ''
+  const mixValue = (incomingString: string, createdPassword: string): string => {
+    if (!!incomingString.length) {
+      const tempValue = incomingString[Math.floor(Math.random() * incomingString.length)]
+      createdPassword += tempValue
+      initialPassword = initialPassword.replace(tempValue, '')
+      return mixValue(initialPassword, createdPassword)
     } else {
-      return init
+      return createdPassword
     }
   }
-  return mixValue(password, result)
+  return mixValue(password, configuredResult)
+}
+
+const configurePassword = (
+  minNum: number,
+  minSpecial: number,
+  len: number,
+  numbers: string,
+  specialSymbols: string,
+  fullInitialState: string
+) => {
+  let configuredPassword = ''
+  if (minNum + minSpecial > len) {
+    return 'Неверно заданные ограничения'
+  } else {
+    for (let i = 0; i < len; i++) {
+      if (i < minNum) {
+        configuredPassword += numbers.charAt(Math.floor(Math.random() * numbers.length))
+      } else {
+        if (i < minNum + minSpecial) {
+          configuredPassword += specialSymbols.charAt(Math.floor(Math.random() * specialSymbols.length))
+        } else {
+          configuredPassword += fullInitialState.charAt(Math.floor(Math.random() * fullInitialState.length))
+        }
+      }
+    }
+  }
+  return configuredPassword
+}
+const setFullInitialState = (
+  withNumber: boolean,
+  withSpecialSymbols: boolean,
+  withLowerCase: boolean,
+  withUpperCase: boolean,
+  numbers: string,
+  specialSymbols: string,
+  lowerCaseLetters: string,
+  upperCaseLetters: string
+) => {
+  let tempState = ''
+  if (withNumber) {
+    tempState += numbers
+  }
+  if (withSpecialSymbols) {
+    tempState += specialSymbols
+  }
+  if (withLowerCase) {
+    tempState += lowerCaseLetters
+  }
+  if (withUpperCase) {
+    tempState += upperCaseLetters
+  }
+  return tempState
 }
 
 export const createPassword = ({
@@ -32,56 +84,22 @@ export const createPassword = ({
   withSpecialSymbols,
   withUpperCase,
 }: IPasswordSettings) => {
-  const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
-  const specialSymbols = '!@#$%^&*()<>,.?/[]{}-=_+|/'
-  const numbers = '0123456789'
-  let tempPull = ''
+  const upperCaseLetters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const lowerCaseLetters: string = 'abcdefghijklmnopqrstuvwxyz'
+  const specialSymbols: string = '!@#$%^&*()<>,.?/[]{}-=_+|/'
+  const numbers: string = '0123456789'
 
-  const setFullInitialState = (
-    withNumber: boolean,
-    withSpecialSymbols: boolean,
-    withLowerCase: boolean,
-    withUpperCase: boolean,
-    initial: string
-  ) => {
-    let tempState = initial
-    if (withNumber) {
-      tempState += numbers
-    }
-    if (withSpecialSymbols) {
-      tempState += specialSymbols
-    }
-    if (withLowerCase) {
-      tempState += lowerCaseLetters
-    }
-    if (withUpperCase) {
-      tempState += upperCaseLetters
-    }
-    return tempState
-  }
+  const fullInitialState = setFullInitialState(
+    withNumbers,
+    withSpecialSymbols,
+    withLowerCase,
+    withUpperCase,
+    numbers,
+    specialSymbols,
+    lowerCaseLetters,
+    upperCaseLetters
+  )
 
-  let fullInitialState = setFullInitialState(withNumbers, withSpecialSymbols, withLowerCase, withUpperCase, tempPull)
-
-  const configurePassword = (minNum: number, minSpecial: number, len: number, initialPull: string) => {
-    let init = initialPull
-    if (minNum + minSpecial > len) {
-      return 'Неверно заданные ограничения'
-    } else {
-      for (let i = 0; i < len; i++) {
-        if (i < minNum) {
-          init += numbers.charAt(Math.floor(Math.random() * numbers.length))
-        } else {
-          if (i < minNum + minSpecial) {
-            init += specialSymbols.charAt(Math.floor(Math.random() * specialSymbols.length))
-          } else {
-            init += fullInitialState.charAt(Math.floor(Math.random() * fullInitialState.length))
-          }
-        }
-      }
-    }
-    return init
-  }
-  const password = configurePassword(minimumNumber, minimumSpecialSymbol, length, tempPull)
-  return password
+  const password = configurePassword(minimumNumber, minimumSpecialSymbol, length, numbers, specialSymbols, fullInitialState)
+  return mixPassword(password)
 }

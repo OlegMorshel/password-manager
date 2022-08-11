@@ -35,7 +35,7 @@ const CreatePasswordSection: React.FC = () => {
   //   const password = passwordCharacters()
   //   return password
   // }
-  createPassword({
+  const res = createPassword({
     length: 15,
     minimumNumber: 5,
     minimumSpecialSymbol: 6,
@@ -44,6 +44,8 @@ const CreatePasswordSection: React.FC = () => {
     withSpecialSymbols: true,
     withUpperCase: true,
   })
+
+  console.log('res ', res)
   return (
     <div className={cnb('generatorWrapper')}>
       <ResultPassword value="" />

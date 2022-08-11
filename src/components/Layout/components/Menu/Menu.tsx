@@ -28,7 +28,7 @@ const Menu = () => {
   return (
     <div className={cnb('menuWrapper')}>
       {menuIconsState.map(item => (
-        <MenuItem {...item} onSelectedItemChange={onSelectedItemChange} />
+        <MenuItem {...item} onSelectedItemChange={onSelectedItemChange} key={item.id} />
       ))}
       <div className={cnb('plusMenuIcon')} onClick={addGroupAction}>
         <PlusMenuSvg />

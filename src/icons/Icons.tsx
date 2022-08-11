@@ -134,8 +134,8 @@ export const SettingsMenuSvg = () => (
 
 export const PlusMenuSvg = () => (
   <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="8.06113" x2="8.06113" y2="15" stroke="#2F8883" stroke-width="2.36842" />
-    <line x1="15.2028" y1="7.94456" x2="0.992574" y2="7.85561" stroke="#2F8883" stroke-width="2.36842" />
+    <line x1="8.06113" x2="8.06113" y2="15" stroke="#2F8883" strokeWidth="2.36842" />
+    <line x1="15.2028" y1="7.94456" x2="0.992574" y2="7.85561" stroke="#2F8883" strokeWidth="2.36842" />
   </svg>
 )
 
