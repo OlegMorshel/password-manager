@@ -1,16 +1,20 @@
 import Button, { ButtonSize } from '@src/components/UiKit/Button/Button'
-import Input from '@src/components/UiKit/Input/Input'
 import RangeComponent, { RangeValue } from '@src/components/UiKit/RangeComponent/RangeComponent'
 import Typography from '@src/components/UiKit/Typography/Typography'
 import classNames from 'classnames/bind'
 import { useFormik } from 'formik'
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import CounterChanger from './components/CounterChanger/CounterChanger'
-import { createPassword } from './components/createPasswordUtils'
+import { createPassword, validateFunction } from './components/createPasswordUtils'
 import ResultPassword from './components/ResultPassword/ResultPassword'
 import UsualFilter from './components/UsualFilter/UsualFilter'
 import styles from './CreatePasswordSection.module.scss'
 const cnb = classNames.bind(styles)
+export interface IValidateError {
+  isError: boolean
+  errorMessage: string
+}
+
 const CreatePasswordSection: React.FC = () => {
   const createPasswordForm = useFormik({
     initialValues: {
@@ -19,39 +23,51 @@ const CreatePasswordSection: React.FC = () => {
     onSubmit: value => console.log('value', value),
   })
   const { errors, touched, handleBlur, handleChange, values } = createPasswordForm
-  const [value, setValue] = useState({ values: [15] })
-  const [isChecked, setIsChecked] = useState(false)
+
+  const [value, setValue] = useState({ values: [8] })
+  const [withUpperCase, setWithUpperCase] = useState(false)
+  const [withLowerCase, setWithLowerCase] = useState(false)
+  const [withNumbers, setWithNumbers] = useState(false)
+  const [withSpecialSymbols, setWithSpecialSymbols] = useState(false)
+  const [minimumNumbers, setMinimumNumbers] = useState(0)
+  const [minimumSymbols, setMinimumSymbols] = useState(0)
+  const [generatedPassword, setGeneratedPassword] = useState('')
   const onChangeValue = (value: RangeValue) => {
     return setValue({ values: value })
   }
 
-  // const generatePassword = (passwordProps, pwdLength) => {
-  //   const { uppercase, lowercase, symbols, numbers } = passwordProps
-  //   setPasswordLength(pwdLength)
-  //   setUpperCase(uppercase)
-  //   setLowerCase(lowercase)
-  //   setSymbols(symbols)
-  //   setNumber(numbers)
-  //   const password = passwordCharacters()
-  //   return password
-  // }
-  const res = createPassword({
-    length: 15,
-    minimumNumber: 5,
-    minimumSpecialSymbol: 6,
-    withLowerCase: true,
-    withNumbers: true,
-    withSpecialSymbols: true,
-    withUpperCase: true,
-  })
-
-  console.log('res ', res)
   return (
     <div className={cnb('generatorWrapper')}>
-      <ResultPassword value="" />
+      <ResultPassword
+        value={generatedPassword}
+        isError={
+          validateFunction(value.values[0], withUpperCase, withLowerCase, withNumbers, withSpecialSymbols, minimumNumbers, minimumSymbols)
+            .isError
+        }
+        error={
+          validateFunction(value.values[0], withUpperCase, withLowerCase, withNumbers, withSpecialSymbols, minimumNumbers, minimumSymbols)
+            .errorMessage
+        }
+      />
       <div className={cnb('buttonsWrapper')}>
         <Button size={ButtonSize.LARGE} title={'Copy'} />
-        <Button size={ButtonSize.LARGE} title={'Generate'} />
+        <Button
+          size={ButtonSize.LARGE}
+          title={'Generate'}
+          onClick={() =>
+            setGeneratedPassword(
+              createPassword({
+                length: value.values[0],
+                minimumNumber: minimumNumbers,
+                minimumSpecialSymbol: minimumSymbols,
+                withLowerCase: withLowerCase,
+                withNumbers: withNumbers,
+                withSpecialSymbols: withSpecialSymbols,
+                withUpperCase: withUpperCase,
+              })
+            )
+          }
+        />
       </div>
       <div className={cnb('lengthWrapper')}>
         <Typography tag="p2">Length</Typography>
@@ -66,12 +82,12 @@ const CreatePasswordSection: React.FC = () => {
           {value.values.length && value.values[0]}
         </Typography>
       </div>
-      <UsualFilter value="A-Z" isActive={isChecked} onChange={setIsChecked} />
-      <UsualFilter value="a-z" isActive={isChecked} onChange={setIsChecked} />
-      <UsualFilter value="0-9" isActive={isChecked} onChange={setIsChecked} />
-      <UsualFilter value="!@#$%^&" isActive={isChecked} onChange={setIsChecked} />
-      <CounterChanger />
-      <CounterChanger />
+      <UsualFilter value="A-Z" isActive={withUpperCase} onChange={setWithUpperCase} />
+      <UsualFilter value="a-z" isActive={withLowerCase} onChange={setWithLowerCase} />
+      <UsualFilter value="0-9" isActive={withNumbers} onChange={setWithNumbers} />
+      <UsualFilter value="!@#$%^&" isActive={withSpecialSymbols} onChange={setWithSpecialSymbols} />
+      <CounterChanger title={'Minimum numbers'} count={minimumNumbers} onChangeNumber={setMinimumNumbers} />
+      <CounterChanger title={'Minimum symbols'} count={minimumSymbols} onChangeNumber={setMinimumSymbols} />
     </div>
   )
 }

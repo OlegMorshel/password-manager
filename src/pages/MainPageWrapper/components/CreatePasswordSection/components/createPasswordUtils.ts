@@ -1,3 +1,5 @@
+import { IValidateError } from '../CreatePasswordSection'
+
 interface IPasswordSettings {
   length: number
   withUpperCase: boolean
@@ -59,20 +61,20 @@ const setFullInitialState = (
   lowerCaseLetters: string,
   upperCaseLetters: string
 ) => {
-  let tempState = ''
+  let tempValuesPull = ''
   if (withNumber) {
-    tempState += numbers
+    tempValuesPull += numbers
   }
   if (withSpecialSymbols) {
-    tempState += specialSymbols
+    tempValuesPull += specialSymbols
   }
   if (withLowerCase) {
-    tempState += lowerCaseLetters
+    tempValuesPull += lowerCaseLetters
   }
   if (withUpperCase) {
-    tempState += upperCaseLetters
+    tempValuesPull += upperCaseLetters
   }
-  return tempState
+  return tempValuesPull
 }
 
 export const createPassword = ({
@@ -88,7 +90,6 @@ export const createPassword = ({
   const lowerCaseLetters: string = 'abcdefghijklmnopqrstuvwxyz'
   const specialSymbols: string = '!@#$%^&*()<>,.?/[]{}-=_+|/'
   const numbers: string = '0123456789'
-
   const fullInitialState = setFullInitialState(
     withNumbers,
     withSpecialSymbols,
@@ -102,4 +103,22 @@ export const createPassword = ({
 
   const password = configurePassword(minimumNumber, minimumSpecialSymbol, length, numbers, specialSymbols, fullInitialState)
   return mixPassword(password)
+}
+
+export const validateFunction = (
+  len: number,
+  withUpperCase: boolean,
+  withLowerCase: boolean,
+  withNumbers: boolean,
+  withSpecialSymbols: boolean,
+  minimumNumbers: number,
+  minimumSpecialSymbol: number
+): IValidateError => {
+  if (len < minimumNumbers + minimumSpecialSymbol) {
+    return { errorMessage: 'Некорректные ограничения количества элементов', isError: true }
+  }
+  if (!withUpperCase && !withLowerCase && !withNumbers && !withSpecialSymbols) {
+    return { errorMessage: 'Не определены допустимые значения', isError: true }
+  }
+  return { isError: false, errorMessage: '' }
 }

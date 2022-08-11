@@ -4,21 +4,25 @@ import classNames from 'classnames/bind'
 import React from 'react'
 import styles from './CounterChanger.module.scss'
 const cnb = classNames.bind(styles)
-const CounterChanger: React.FC = () => {
+interface ICounterChanger {
+  onChangeNumber: React.Dispatch<React.SetStateAction<number>>
+  count: number
+  title: string
+}
+const CounterChanger: React.FC<ICounterChanger> = ({ count, onChangeNumber, title }) => {
   return (
     <div className={cnb('counterChanger')}>
       <Typography tag="p2" className={cnb('title')}>
-        Minimum number
+        {title}
       </Typography>
       <div className={cnb('countText')}>
-        <div className={cnb('action')}>
+        <div className={cnb('action')} onClick={() => count > 0 && onChangeNumber(prev => prev - 1)}>
           <MinusIconSvg />
         </div>
-
         <Typography tag="p2" className={cnb('count')}>
-          03
+          {count}
         </Typography>
-        <div className={cnb('action')}>
+        <div className={cnb('action')} onClick={() => count >= 0 && onChangeNumber(prev => prev + 1)}>
           <PlusIconSvg />
         </div>
       </div>
