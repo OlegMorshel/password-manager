@@ -2,10 +2,9 @@ import Button, { ButtonSize } from '@src/components/UiKit/Button/Button'
 import RangeComponent, { RangeValue } from '@src/components/UiKit/RangeComponent/RangeComponent'
 import Typography from '@src/components/UiKit/Typography/Typography'
 import classNames from 'classnames/bind'
-import { useFormik } from 'formik'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import CounterChanger from './components/CounterChanger/CounterChanger'
-import { createPassword, validateFunction } from './components/createPasswordUtils'
+import { createPassword, validationFunction } from './components/createPasswordUtils'
 import ResultPassword from './components/ResultPassword/ResultPassword'
 import UsualFilter from './components/UsualFilter/UsualFilter'
 import styles from './CreatePasswordSection.module.scss'
@@ -16,14 +15,6 @@ export interface IValidateError {
 }
 
 const CreatePasswordSection: React.FC = () => {
-  const createPasswordForm = useFormik({
-    initialValues: {
-      password: '',
-    },
-    onSubmit: value => console.log('value', value),
-  })
-  const { errors, touched, handleBlur, handleChange, values } = createPasswordForm
-
   const [value, setValue] = useState({ values: [8] })
   const [withUpperCase, setWithUpperCase] = useState(false)
   const [withLowerCase, setWithLowerCase] = useState(false)
@@ -32,43 +23,51 @@ const CreatePasswordSection: React.FC = () => {
   const [minimumNumbers, setMinimumNumbers] = useState(0)
   const [minimumSymbols, setMinimumSymbols] = useState(0)
   const [generatedPassword, setGeneratedPassword] = useState('')
+
+  const validationResult = validationFunction(
+    value.values[0],
+    withUpperCase,
+    withLowerCase,
+    withNumbers,
+    withSpecialSymbols,
+    minimumNumbers,
+    minimumSymbols
+  )
+
   const onChangeValue = (value: RangeValue) => {
     return setValue({ values: value })
+  }
+
+  const clickCopy = () => {
+    if (!validationResult.isError) return navigator.clipboard.writeText(generatedPassword)
+    return
+  }
+
+  const configurePassword = () => {
+    return setGeneratedPassword(
+      createPassword({
+        length: value.values[0],
+        minimumNumber: minimumNumbers,
+        minimumSpecialSymbol: minimumSymbols,
+        withLowerCase: withLowerCase,
+        withNumbers: withNumbers,
+        withSpecialSymbols: withSpecialSymbols,
+        withUpperCase: withUpperCase,
+      })
+    )
   }
 
   return (
     <div className={cnb('generatorWrapper')}>
       <ResultPassword
         value={generatedPassword}
-        isError={
-          validateFunction(value.values[0], withUpperCase, withLowerCase, withNumbers, withSpecialSymbols, minimumNumbers, minimumSymbols)
-            .isError
-        }
-        error={
-          validateFunction(value.values[0], withUpperCase, withLowerCase, withNumbers, withSpecialSymbols, minimumNumbers, minimumSymbols)
-            .errorMessage
-        }
+        isError={validationResult.isError}
+        error={validationResult.errorMessage}
         setGeneratedPassword={setGeneratedPassword}
       />
       <div className={cnb('buttonsWrapper')}>
-        <Button size={ButtonSize.LARGE} title={'Copy'} />
-        <Button
-          size={ButtonSize.LARGE}
-          title={'Generate'}
-          onClick={() =>
-            setGeneratedPassword(
-              createPassword({
-                length: value.values[0],
-                minimumNumber: minimumNumbers,
-                minimumSpecialSymbol: minimumSymbols,
-                withLowerCase: withLowerCase,
-                withNumbers: withNumbers,
-                withSpecialSymbols: withSpecialSymbols,
-                withUpperCase: withUpperCase,
-              })
-            )
-          }
-        />
+        <Button size={ButtonSize.LARGE} title={'Copy'} onClick={clickCopy} />
+        <Button size={ButtonSize.LARGE} title={'Generate'} onClick={configurePassword} />
       </div>
       <div className={cnb('lengthWrapper')}>
         <Typography tag="p2">Length</Typography>

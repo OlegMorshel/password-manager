@@ -105,7 +105,7 @@ export const createPassword = ({
   return mixPassword(password)
 }
 
-export const validateFunction = (
+export const validationFunction = (
   len: number,
   withUpperCase: boolean,
   withLowerCase: boolean,
