@@ -76,10 +76,10 @@ const DropZone: React.FC<Props> = memo(
       [files, maxFiles, setFiles]
     )
     const { getRootProps, getInputProps } = useDropzone({
-      onDrop,
-      accept: 'image/*',
-      multiple: multiple,
-      maxFiles: maxFiles - files?.length,
+      // onDrop,
+      // accept: 'image/*',
+      // multiple: multiple,
+      // maxFiles: maxFiles - files?.length,
     })
     return (
       <>

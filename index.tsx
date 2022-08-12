@@ -6,6 +6,7 @@ import './src/styles/styles.scss'
 import { Provider } from 'react-redux'
 import { store } from './src/store/store'
 import { BrowserRouter } from 'react-router-dom'
+import NotificationsProvider from '@src/providers/NotificationsProvider'
 
 const rootElement = document.getElementById('root')
 const root = createRoot(rootElement as Element)
@@ -14,7 +15,9 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <StrictMode>
-        <App />
+        <NotificationsProvider>
+          <App />
+        </NotificationsProvider>
       </StrictMode>
     </BrowserRouter>
   </Provider>

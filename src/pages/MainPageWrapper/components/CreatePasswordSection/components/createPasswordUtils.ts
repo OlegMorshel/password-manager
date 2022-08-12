@@ -115,10 +115,10 @@ export const validationFunction = (
   minimumSpecialSymbol: number
 ): IValidateError => {
   if (len < minimumNumbers + minimumSpecialSymbol) {
-    return { errorMessage: 'Некорректные ограничения количества элементов', isError: true }
+    return { errorMessage: 'Incorrect item count limits!', isError: true, code: 'incorrect property' }
   }
   if (!withUpperCase && !withLowerCase && !withNumbers && !withSpecialSymbols) {
-    return { errorMessage: 'Не определены допустимые значения', isError: true }
+    return { errorMessage: 'Valid values are not defined!', isError: true, code: "values aren't defined" }
   }
   return { isError: false, errorMessage: '' }
 }

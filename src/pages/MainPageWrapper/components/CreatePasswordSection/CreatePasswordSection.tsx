@@ -1,6 +1,7 @@
 import Button, { ButtonSize } from '@src/components/UiKit/Button/Button'
 import RangeComponent, { RangeValue } from '@src/components/UiKit/RangeComponent/RangeComponent'
 import Typography from '@src/components/UiKit/Typography/Typography'
+import { createNotification, ToastType } from '@src/providers/NotificationsProvider'
 import classNames from 'classnames/bind'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import CounterChanger from './components/CounterChanger/CounterChanger'
@@ -12,6 +13,7 @@ const cnb = classNames.bind(styles)
 export interface IValidateError {
   isError: boolean
   errorMessage: string
+  code?: "values aren't defined" | 'incorrect property'
 }
 
 const CreatePasswordSection: React.FC = () => {
@@ -39,22 +41,33 @@ const CreatePasswordSection: React.FC = () => {
   }
 
   const clickCopy = () => {
-    if (!validationResult.isError) return navigator.clipboard.writeText(generatedPassword)
-    return
+    if (!validationResult.isError) {
+      createNotification(ToastType.SUCCESS, 'Copied!')
+      return navigator.clipboard.writeText(generatedPassword)
+    } else {
+      return createNotification(ToastType.ERROR, validationResult.errorMessage)
+    }
   }
 
   const configurePassword = () => {
-    return setGeneratedPassword(
-      createPassword({
-        length: value.values[0],
-        minimumNumber: minimumNumbers,
-        minimumSpecialSymbol: minimumSymbols,
-        withLowerCase: withLowerCase,
-        withNumbers: withNumbers,
-        withSpecialSymbols: withSpecialSymbols,
-        withUpperCase: withUpperCase,
-      })
-    )
+    if (!validationResult.isError) {
+      return setGeneratedPassword(
+        createPassword({
+          length: value.values[0],
+          minimumNumber: minimumNumbers,
+          minimumSpecialSymbol: minimumSymbols,
+          withLowerCase: withLowerCase,
+          withNumbers: withNumbers,
+          withSpecialSymbols: withSpecialSymbols,
+          withUpperCase: withUpperCase,
+        })
+      )
+    } else {
+      if (validationResult.code === "values aren't defined") {
+        return createNotification(ToastType.ERROR, "Values aren't defined!")
+      }
+      return
+    }
   }
 
   return (
