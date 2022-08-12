@@ -36,7 +36,7 @@
 
   &.focused {
     @extend .input;
-    box-shadow: 0px 4px 16px $green;
+    box-shadow: 0px 2px 8px $green;
 
     &.disabled {
       background: rgba(11, 31, 51, 0.1);

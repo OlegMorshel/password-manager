@@ -3,28 +3,43 @@ import Typography from '@src/components/UiKit/Typography/Typography'
 import classNames from 'classnames/bind'
 import React from 'react'
 import { SwiperSlide } from 'swiper/react'
+import ObserveCard from './components/ObserveCard/ObserveCard'
 import styles from './ObserveItem.module.scss'
 const cnb = classNames.bind(styles)
 
-interface IObserveItem {}
-const ObserveItem: React.FC<IObserveItem> = () => {
+interface IObserveItem {
+  theme: string
+  count?: string
+}
+const ObserveItem: React.FC<IObserveItem> = ({ theme, count }) => {
   return (
     <div className={cnb('observeItemWrapper')}>
-      <Typography tag="h5" className={cnb('titleWrapper')}>
-        Login
-      </Typography>
+      <div className={cnb('header')}>
+        <Typography tag="h5" className={cnb('titleWrapper')}>
+          {theme}
+        </Typography>
+        <Typography tag="h6" className={cnb('countWrapper')}>
+          {count}
+        </Typography>
+      </div>
       <Slider
         swiperSlidesList={
           <>
-            <SwiperSlide>Slide 1</SwiperSlide>
-            <SwiperSlide>Slide 2</SwiperSlide>
-            <SwiperSlide>Slide 3</SwiperSlide>
-            <SwiperSlide>Slide 4</SwiperSlide>
-            <SwiperSlide>Slide 5</SwiperSlide>
-            <SwiperSlide>Slide 6</SwiperSlide>
-            <SwiperSlide>Slide 7</SwiperSlide>
-            <SwiperSlide>Slide 8</SwiperSlide>
-            <SwiperSlide>Slide 9</SwiperSlide>
+            <SwiperSlide>
+              <ObserveCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ObserveCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ObserveCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ObserveCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ObserveCard />
+            </SwiperSlide>
           </>
         }
       />

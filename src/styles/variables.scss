@@ -19,3 +19,9 @@ $menuHeight: 58px;
   min-width: $size;
   max-width: $size;
 }
+
+@mixin textClipping() {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

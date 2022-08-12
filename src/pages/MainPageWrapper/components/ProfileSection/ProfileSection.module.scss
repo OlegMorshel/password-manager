@@ -1,0 +1,28 @@
+.profileWrapper {
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 150px);
+  .profileSection {
+    flex: 1 1 auto;
+    margin-bottom: 12px;
+    overflow-y: scroll;
+    .infoWrapper {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+
+      .profileIcon {
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+    .saveButton {
+      margin-bottom: 32px;
+    }
+    .updatePasswordText,
+    .editProfileText {
+      color: rgb(132, 132, 132);
+      margin-bottom: 16px;
+    }
+  }
+}
