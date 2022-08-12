@@ -3,18 +3,43 @@
   display: grid;
   grid-template-columns: 4.5fr 2.5fr 2fr;
   align-items: center;
-
-  .image {
-    height: 100%;
-    max-width: 100%;
-    width: auto;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 16px;
+  padding: 16px 0;
+  .coverWrapper {
+    overflow: hidden;
+    border-radius: 12px;
+    max-height: 110px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    background: red;
+    justify-content: center;
+    .cover {
+      max-width: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+
+      -webkit-box-shadow: 0px 8px 8px 0px rgba(34, 60, 80, 0.2);
+      -moz-box-shadow: 0px 8px 8px 0px rgba(34, 60, 80, 0.2);
+      box-shadow: 0px 8px 8px 0px rgba(34, 60, 80, 0.2);
+
+      &:hover {
+        transform: scale(1.2);
+        transition: all 0.25s linear;
+        cursor: pointer;
+      }
+    }
+  }
+  .collectionTitle {
+    cursor: pointer;
+    color: $textColor;
+    transition: color 0.24s;
+    &:hover {
+      color: $hover;
+      transition: color 0.24s;
+    }
   }
   .infoWrapper {
     display: flex;
@@ -22,8 +47,6 @@
     justify-content: space-around;
     align-items: center;
     padding: 10px 5px;
-    .collectionTitle {
-    }
     .collectionCount {
       color: $green;
       font-size: 37px;
@@ -37,5 +60,18 @@
     margin-top: auto;
     align-items: flex-end;
     height: 100%;
+    padding: 10px 0;
+
+    cursor: pointer;
+    color: $textColor;
+    transition: color 0.24s;
+    &:hover {
+      color: $hover;
+      transition: color 0.24s;
+    }
   }
+}
+
+.collectionWrapper + .collectionWrapper {
+  border-top: 1px solid $green;
 }

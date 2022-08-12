@@ -23,7 +23,7 @@ const Picture: React.FC<Props> = memo(({ alt, src, className, height, width }) =
       effect={checkIsImageCached(src) ? undefined : 'blur'}
       src={src ?? getPlaceholder()}
       alt={alt}
-      className={`${className}`}
+      className={className}
       key={src}
       width={width}
       height={height}

@@ -18,10 +18,10 @@ export interface IValidateError {
 
 const CreatePasswordSection: React.FC = () => {
   const [value, setValue] = useState({ values: [8] })
-  const [withUpperCase, setWithUpperCase] = useState(false)
-  const [withLowerCase, setWithLowerCase] = useState(false)
-  const [withNumbers, setWithNumbers] = useState(false)
-  const [withSpecialSymbols, setWithSpecialSymbols] = useState(false)
+  const [withUpperCase, setWithUpperCase] = useState(true)
+  const [withLowerCase, setWithLowerCase] = useState(true)
+  const [withNumbers, setWithNumbers] = useState(true)
+  const [withSpecialSymbols, setWithSpecialSymbols] = useState(true)
   const [minimumNumbers, setMinimumNumbers] = useState(0)
   const [minimumSymbols, setMinimumSymbols] = useState(0)
   const [generatedPassword, setGeneratedPassword] = useState('')

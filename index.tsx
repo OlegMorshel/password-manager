@@ -14,11 +14,9 @@ const root = createRoot(rootElement as Element)
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <StrictMode>
-        <NotificationsProvider>
-          <App />
-        </NotificationsProvider>
-      </StrictMode>
+      <NotificationsProvider>
+        <App />
+      </NotificationsProvider>
     </BrowserRouter>
   </Provider>
 )

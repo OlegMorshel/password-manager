@@ -18,7 +18,13 @@ const CollectionItem: React.FC<Props> = ({ item }) => {
   const { count, title, cover } = item
   return (
     <div className={cnb('collectionWrapper')}>
-      <Picture alt="" src={cover?.absolute_path} className={cnb('image')} />
+      <div className={cnb('coverWrapper')}>
+        <Picture
+          alt="profile"
+          className={cnb('cover')}
+          src="https://images.freeimages.com/variants/QTyPhL6A6VdRuFw4TYKMdZNq/5a0bd68e593adb18739fe6fe526aa40368c6d1e5924c85e47ba06f7a665f1000"
+        />
+      </div>
       <div className={cnb('infoWrapper')}>
         <Typography tag="p1" className={cnb('collectionTitle')}>
           {title}

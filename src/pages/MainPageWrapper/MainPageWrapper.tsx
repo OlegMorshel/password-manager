@@ -6,6 +6,7 @@ import MainPageContent from './MainPageContent'
 
 export enum UrlQueryParamToPages {
   PASSWORD_MANAGER = 'passwordCollections',
+  OBSERVE_NOTES = 'observeNotes',
   CREATION_PASSWORD = 'configurePassword',
   ADD_GROUP = 'addGroup',
   SETTINGS = 'settings',

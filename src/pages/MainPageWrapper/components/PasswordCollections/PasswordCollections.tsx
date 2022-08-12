@@ -8,15 +8,21 @@ import styles from './PasswordCollections.module.scss'
 const cnb = classNames.bind(styles)
 const PasswordCollections: React.FC = () => {
   const [files, setFiles] = useState<ApiFileType[]>([])
-  const testList: IGroupType[] = [{ count: '15', id: uuidv4(), title: 'Login' }]
+  const testList: IGroupType[] = [
+    { count: '15', id: uuidv4(), title: 'Login' },
+    { count: '45', id: uuidv4(), title: 'Email' },
+  ]
   return (
     <div className={cnb('passwordCollectionsWrapper')}>
       <Typography tag="h5" className={cnb('title')}>
         Let's <span>secure</span> your details...
       </Typography>
-      {testList.map(card => (
-        <CollectionItem item={card} key={card.id} />
-      ))}
+
+      <div className={cnb('collectionScrollWrapper')}>
+        {testList.map(card => (
+          <CollectionItem item={card} key={card.id} />
+        ))}
+      </div>
     </div>
   )
 }
