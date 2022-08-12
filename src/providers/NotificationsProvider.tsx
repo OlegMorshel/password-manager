@@ -38,7 +38,7 @@ const NotificationsProvider: React.FC<INotificationsProps> = ({ children }): Rea
         theme="light"
         progressClassName={cnb('progressBar')}
         position="top-right"
-        autoClose={10000}
+        autoClose={5000}
         hideProgressBar={false}
         newestOnTop
         closeOnClick

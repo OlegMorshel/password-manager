@@ -13,12 +13,32 @@ const ResultPassword: React.FC<IResultPassword> = ({ value, error, isError, setG
   if (isError) {
     setGeneratedPassword('')
   }
+
+  const setLetterClassName = (symbol: string) => {
+    const letters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    const specialSymbols: string = '!@#$%^&*()<>,.?/[]{}-=_+|/'
+    const numbers: string = '0123456789'
+    if (letters.includes(symbol)) {
+      return cnb('isLetter')
+    }
+    if (specialSymbols.includes(symbol)) {
+      return cnb('isSymbol')
+    }
+    if (numbers.includes(symbol)) {
+      return cnb('isNumber')
+    }
+    return cnb('defaultText')
+  }
   return (
     <div className={cnb('passwordWrapper')}>
       <div className={cnb('passwordInfo')}>
-        <Typography tag="p2" className={cnb('value')}>
-          {!isError && value}
-        </Typography>
+        <div className={cnb('textWrapper')}>
+          {[...value].map((chart, index) => (
+            <Typography tag="p2" className={cnb('value', setLetterClassName(chart))} key={index}>
+              {chart}
+            </Typography>
+          ))}
+        </div>
       </div>
       {isError && (
         <Typography tag="p4" className={cnb('errorMessage')}>
