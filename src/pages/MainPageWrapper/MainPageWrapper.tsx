@@ -9,7 +9,7 @@ export enum UrlQueryParamToPages {
   OBSERVE_NOTES = 'observeNotes',
   CREATION_PASSWORD = 'configurePassword',
   ADD_GROUP = 'addGroup',
-  SETTINGS = 'settings',
+  PROFILE = 'profile',
 }
 
 const MainPageWrapper: React.FC = () => {

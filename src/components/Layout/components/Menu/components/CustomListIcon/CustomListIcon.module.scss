@@ -1,0 +1,13 @@
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 22px;
+  width: 22px;
+  .iconCircle {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: white;
+  }
+}

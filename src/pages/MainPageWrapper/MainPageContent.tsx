@@ -4,7 +4,7 @@ import AddNewGroup from './components/AddNewGroup/AddNewGroup'
 import CreatePasswordSection from './components/CreatePasswordSection/CreatePasswordSection'
 import ObserveNotes from './components/ObserveNotes/ObserveNotes'
 import PasswordSection from './components/PasswordCollections/PasswordCollections'
-import SettingsSection from './components/SettingsSection/SettingsSection'
+import ProfileSection from './components/ProfileSection/ProfileSection'
 import { UrlQueryParamToPages } from './MainPageWrapper'
 interface IMainPageContent {
   query: string
@@ -19,8 +19,8 @@ const MainPageContent: React.FC<IMainPageContent> = ({ query }) => {
       return <AddNewGroup />
     case UrlQueryParamToPages.CREATION_PASSWORD:
       return <CreatePasswordSection />
-    case UrlQueryParamToPages.SETTINGS:
-      return <SettingsSection />
+    case UrlQueryParamToPages.PROFILE:
+      return <ProfileSection />
     default:
       return <NotFound />
   }

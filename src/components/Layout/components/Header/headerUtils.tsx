@@ -10,8 +10,8 @@ export const getHeaderTitle = ({ query }: { query: string }) => {
       return 'Add details'
     case UrlQueryParamToPages.CREATION_PASSWORD:
       return 'Password generator'
-    case UrlQueryParamToPages.SETTINGS:
-      return 'Settings'
+    case UrlQueryParamToPages.PROFILE:
+      return 'Profile'
     default:
       return ''
   }

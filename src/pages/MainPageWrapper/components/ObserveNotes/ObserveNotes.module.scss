@@ -1,3 +1,5 @@
 .notesWrapper {
   padding: 16px 0;
+  overflow-y: scroll;
+  height: calc(100% - 106px);
 }

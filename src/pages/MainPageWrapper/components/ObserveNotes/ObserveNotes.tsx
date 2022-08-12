@@ -8,6 +8,8 @@ const ObserveNotes: React.FC = () => {
   return (
     <div className={cnb('notesWrapper')}>
       <ObserveItem />
+      <ObserveItem />
+      <ObserveItem />
     </div>
   )
 }
