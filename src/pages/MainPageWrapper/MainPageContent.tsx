@@ -5,21 +5,21 @@ import CreatePasswordSection from './components/CreatePasswordSection/CreatePass
 import ObserveNotes from './components/ObserveNotes/ObserveNotes'
 import PasswordSection from './components/PasswordCollections/PasswordCollections'
 import ProfileSection from './components/ProfileSection/ProfileSection'
-import { UrlQueryParamToPages } from './MainPageWrapper'
+import { MainPageEnum, UrlPageParamToPages } from './MainPageWrapper'
 interface IMainPageContent {
-  query: string
+  page: MainPageEnum
 }
-const MainPageContent: React.FC<IMainPageContent> = ({ query }) => {
-  switch (query) {
-    case UrlQueryParamToPages.PASSWORD_MANAGER:
+const MainPageContent: React.FC<IMainPageContent> = ({ page }) => {
+  switch (page) {
+    case MainPageEnum.CREATED_NOTES:
       return <PasswordSection />
-    case UrlQueryParamToPages.OBSERVE_NOTES:
+    case MainPageEnum.CREATED_NOTE_OBSERVE:
       return <ObserveNotes />
-    case UrlQueryParamToPages.ADD_GROUP:
+    case MainPageEnum.ADD_NEW_NOTE_GROUP:
       return <AddNewGroup />
-    case UrlQueryParamToPages.CREATION_PASSWORD:
+    case MainPageEnum.CREATE_PASSWORD:
       return <CreatePasswordSection />
-    case UrlQueryParamToPages.PROFILE:
+    case MainPageEnum.PROFILE_SETTINGS:
       return <ProfileSection />
     default:
       return <NotFound />

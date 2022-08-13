@@ -1,24 +1,25 @@
 import classNames from 'classnames/bind'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styles from './MenuItem.module.scss'
 const cnb = classNames.bind(styles)
 export interface IMenuItem {
   id: string
   icon: JSX.Element
   isActive: boolean
-  query: string
+  page: string
 }
 
-interface IMenuItemProps extends IMenuItem {
-  onSelectedItemChange: (item: IMenuItem) => void
-}
+interface IMenuItemProps extends IMenuItem {}
 
-const MenuItem: React.FC<IMenuItemProps> = ({ icon, isActive, id, query, onSelectedItemChange }) => {
+const MenuItem: React.FC<IMenuItemProps> = ({ icon, isActive, id, page }) => {
   return (
-    <div className={cnb('menuItemWrapper')} onClick={() => onSelectedItemChange({ icon, id, query, isActive })}>
-      {icon}
-      <div className={cnb('mark', { activeMark: isActive })} />
-    </div>
+    <Link to={`/${page}`} replace>
+      <div className={cnb('menuItemWrapper')}>
+        {icon}
+        <div className={cnb('mark', { activeMark: isActive })} />
+      </div>
+    </Link>
   )
 }
 

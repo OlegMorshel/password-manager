@@ -1,16 +1,16 @@
-import { UrlQueryParamToPages } from '@src/pages/MainPageWrapper/MainPageWrapper'
+import { UrlPageParamToPages } from '@src/pages/MainPageWrapper/MainPageWrapper'
 
-export const getHeaderTitle = ({ query }: { query: string }) => {
-  switch (query) {
-    case UrlQueryParamToPages.PASSWORD_MANAGER:
+export const getHeaderTitle = ({ pathName }: { pathName: string }) => {
+  switch (pathName) {
+    case UrlPageParamToPages.PASSWORD_MANAGER:
       return 'Securel'
-    case UrlQueryParamToPages.OBSERVE_NOTES:
+    case UrlPageParamToPages.OBSERVE_NOTES:
       return 'Observe Notes'
-    case UrlQueryParamToPages.ADD_GROUP:
+    case UrlPageParamToPages.ADD_GROUP:
       return 'Add details'
-    case UrlQueryParamToPages.CREATION_PASSWORD:
+    case UrlPageParamToPages.CREATION_PASSWORD:
       return 'Password generator'
-    case UrlQueryParamToPages.PROFILE:
+    case UrlPageParamToPages.PROFILE:
       return 'Profile'
     default:
       return ''

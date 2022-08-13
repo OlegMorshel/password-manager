@@ -3,6 +3,7 @@ import React, { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import styles from './App.module.scss'
 import Loader from './components/UiKit/Loader/Loader'
+import { MainPageEnum } from './pages/MainPageWrapper/MainPageWrapper'
 const cnb = classNames.bind(styles)
 
 const AuthorizationWrapper = React.lazy(
@@ -23,7 +24,12 @@ const App = () => {
     >
       <Routes>
         <Route path="/auth" element={<AuthorizationWrapper />} />
-        <Route path="/" element={<MainPageWrapper />} />
+        <Route path="/" element={<MainPageWrapper type={MainPageEnum.CREATED_NOTES} />} />
+        <Route path="/passwordCollections" element={<MainPageWrapper type={MainPageEnum.CREATED_NOTES} />} />
+        <Route path="/observeNotes" element={<MainPageWrapper type={MainPageEnum.CREATED_NOTE_OBSERVE} />} />
+        <Route path="/addGroup" element={<MainPageWrapper type={MainPageEnum.ADD_NEW_NOTE_GROUP} />} />
+        <Route path="/configurePassword" element={<MainPageWrapper type={MainPageEnum.CREATE_PASSWORD} />} />
+        <Route path="/profile" element={<MainPageWrapper type={MainPageEnum.PROFILE_SETTINGS} />} />
       </Routes>
     </Suspense>
   )

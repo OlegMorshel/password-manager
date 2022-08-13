@@ -1,6 +1,7 @@
 import Button, { ButtonSize } from '@src/components/UiKit/Button/Button'
 import DropZone, { ApiFileType } from '@src/components/UiKit/DropZone/DropZone'
 import Input from '@src/components/UiKit/Input/Input'
+import Typography from '@src/components/UiKit/Typography/Typography'
 import classNames from 'classnames/bind'
 import { useFormik } from 'formik'
 import React, { useState } from 'react'
@@ -22,12 +23,15 @@ const AddNewGroup: React.FC = () => {
         id="title"
         name="title"
         setValue={handleChange}
-        title="Title"
+        title="Group title"
         error={errors.title}
         touched={touched.title}
         handleBlur={handleBlur}
         value={values.title}
       />
+      <Typography tag="p2" className={cnb('subtitle')}>
+        Group image
+      </Typography>
       <DropZone files={file} setFiles={setFile} />
       <Button size={ButtonSize.LARGE} title="Create" />
     </div>

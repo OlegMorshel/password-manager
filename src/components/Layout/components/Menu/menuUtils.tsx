@@ -5,8 +5,8 @@ import CustomListIcon from './components/CustomListIcon/CustomListIcon'
 import ProfileCustomSvg from './components/ProfileCustomSvg/ProfileCustomSvg'
 
 export const MenuItems: IMenuItem[] = [
-  { id: uuidv4(), icon: <PasswordMenuSvg />, query: 'passwordCollections', isActive: true },
-  { id: uuidv4(), icon: <CustomListIcon />, query: 'observeNotes', isActive: false },
-  { id: uuidv4(), icon: <CreatePasswordMenuSvg />, query: 'configurePassword', isActive: false },
-  { id: uuidv4(), icon: <ProfileCustomSvg />, query: 'profile', isActive: false },
+  { id: uuidv4(), icon: <PasswordMenuSvg />, page: 'passwordCollections', isActive: true },
+  { id: uuidv4(), icon: <CustomListIcon />, page: 'observeNotes', isActive: false },
+  { id: uuidv4(), icon: <CreatePasswordMenuSvg />, page: 'configurePassword', isActive: false },
+  { id: uuidv4(), icon: <ProfileCustomSvg />, page: 'profile', isActive: false },
 ]

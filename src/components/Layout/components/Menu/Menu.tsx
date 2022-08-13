@@ -1,38 +1,34 @@
 import { PasswordMenuSvg, PlusMenuSvg } from '@src/icons/Icons'
+import { MainPageEnum } from '@src/pages/MainPageWrapper/MainPageWrapper'
 import classNames from 'classnames/bind'
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import MenuItem, { IMenuItem } from './components/MenuItem/MenuItem'
 import styles from './Menu.module.scss'
 import { MenuItems } from './menuUtils'
 const cnb = classNames.bind(styles)
-
-const Menu = () => {
+interface IMenu {
+  page?: MainPageEnum
+}
+const Menu: React.FC<IMenu> = ({ page }) => {
   const [menuIconsState, setMenuIconsState] = useState<IMenuItem[]>(MenuItems)
-  const navigate = useNavigate()
-  const onSelectedItemChange = (item: IMenuItem) => {
-    setMenuIconsState(
-      menuIconsState.map(el => {
-        if (el.id === item.id) return { ...el, isActive: true }
-        return { ...el, isActive: false }
-      })
-    )
-    navigate({ pathname: '/', search: item.query }, { replace: true })
-    return
-  }
-  const addGroupAction = () => {
-    setMenuIconsState(menuIconsState.map(el => ({ ...el, isActive: false })))
-    navigate({ pathname: '/', search: 'addGroup' }, { replace: true })
-  }
+  const locationQuery = useLocation()
+  const pathName = useMemo(() => locationQuery.pathname.replace('/', ''), [locationQuery])
+
+  useEffect(() => {
+    setMenuIconsState(prev => prev.map(menuItem => ({ ...menuItem, isActive: pathName === menuItem.page })))
+  }, [locationQuery])
 
   return (
     <div className={cnb('menuWrapper')}>
       {menuIconsState.map(item => (
-        <MenuItem {...item} onSelectedItemChange={onSelectedItemChange} key={item.id} />
+        <MenuItem {...item} key={item.id} />
       ))}
-      <div className={cnb('plusMenuIcon')} onClick={addGroupAction}>
-        <PlusMenuSvg />
-      </div>
+      <Link to={'/addGroup'}>
+        <div className={cnb('plusMenuIcon')}>
+          <PlusMenuSvg />
+        </div>
+      </Link>
     </div>
   )
 }

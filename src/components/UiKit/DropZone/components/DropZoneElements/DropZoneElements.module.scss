@@ -8,11 +8,19 @@
 }
 
 .imagePreview {
-  margin-left: 16px;
-  padding-bottom: 18px;
+  margin-bottom: 18px;
   position: relative;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
 
+  .nameText {
+    @include textClipping;
+  }
   svg {
     transition: all 0.1s linear;
     position: absolute;

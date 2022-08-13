@@ -22,7 +22,7 @@ const Authorization: React.FC = () => {
   const navigate = useNavigate()
 
   const handleLogin = () => {
-    navigate({ pathname: '/', search: 'passwordCollections' }, { replace: true })
+    navigate({ pathname: '/passwordCollections', search: '' }, { replace: true })
   }
 
   return (

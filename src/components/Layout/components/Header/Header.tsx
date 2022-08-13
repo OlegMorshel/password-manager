@@ -9,11 +9,11 @@ const cnb = classNames.bind(styles)
 
 const Header: React.FC = () => {
   const locationQuery = useLocation()
-  const query = useMemo(() => locationQuery.search.replace('?', ''), [locationQuery])
+  const pathName = useMemo(() => locationQuery.pathname.replace('/', ''), [locationQuery])
   return (
     <div className={cnb('headerWrapper')}>
       <Typography tag="h4" className={cnb('headerTitle')}>
-        {getHeaderTitle({ query: query })}
+        {getHeaderTitle({ pathName: pathName })}
       </Typography>
       <Picture alt="profile" className={cnb('profileWrapper')} />
     </div>
