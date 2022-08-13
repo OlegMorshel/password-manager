@@ -3,6 +3,7 @@ import Picture from '@src/components/UiKit/Picture/Picture'
 import Typography from '@src/components/UiKit/Typography/Typography'
 import classNames from 'classnames/bind'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styles from './CollectionItem.module.scss'
 const cnb = classNames.bind(styles)
 export interface IGroupType {
@@ -27,14 +28,14 @@ const CollectionItem: React.FC<Props> = ({ item }) => {
       </div>
       <div className={cnb('infoWrapper')}>
         <Typography tag="p1" className={cnb('collectionTitle')}>
-          {title}
+          <Link to={{ pathname: '/observeNotes', search: title }}>{title}</Link>
         </Typography>
         <Typography tag="h5" className={cnb('collectionCount')}>
           {count}
         </Typography>
       </div>
       <Typography tag="p4" className={cnb('viewAllText')}>
-        {count ? 'View all' : ''}
+        <Link to={'/observeNotes'}>{count ? 'View all' : ''}</Link>
       </Typography>
     </div>
   )

@@ -33,12 +33,15 @@
     }
   }
   .collectionTitle {
-    cursor: pointer;
-    color: $textColor;
-    transition: color 0.24s;
-    &:hover {
-      color: $hover;
+    a {
+      text-decoration: none;
+      cursor: pointer;
+      color: $textColor;
       transition: color 0.24s;
+      &:hover {
+        color: $hover;
+        transition: color 0.24s;
+      }
     }
   }
   .infoWrapper {
@@ -62,12 +65,17 @@
     height: 100%;
     padding: 10px 0;
 
-    cursor: pointer;
-    color: $textColor;
     transition: color 0.24s;
-    &:hover {
-      color: $hover;
+
+    a {
+      cursor: pointer;
+      text-decoration: none;
+      color: $textColor;
       transition: color 0.24s;
+      &:hover {
+        color: $hover;
+        transition: color 0.24s;
+      }
     }
   }
 }
