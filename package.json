@@ -34,8 +34,9 @@
   "scripts": {
     "dev": "webpack serve --mode=development --progress",
     "build": "webpack",
-    "build:prod": "webpack --config webpack.config.prod.js"
-  },
+    "build:prod": "webpack --config webpack.config.prod.js",
+    "format": "prettier --write --cache --cache-strategy metadata src"
+  }, 
   "author": "Oleg Morshel",
   "license": "ISC",
   "files": [
